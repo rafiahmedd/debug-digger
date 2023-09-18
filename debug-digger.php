@@ -26,6 +26,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 
  const DD_TEXT_DOMAIN = 'debug-digger';
+ const DD_VERSION = '1.0.0';
+ define('DD_PLUGIN_PATH', plugin_dir_path(__FILE__));
+ define('DD_PLUGIN_URL', plugin_dir_url(__FILE__));
 
  // Autoload the plugin classes.
 spl_autoload_register(function ($class) {

@@ -7,13 +7,13 @@ class AdminMenuService
     {
         $permission = apply_filters('duebug_digger/admin_menu_permission', 'manage_options');
 
-        if (! current_user_can($permission) ) {
+        if (!current_user_can($permission) ) {
             return;
         }
 
         add_menu_page(
-            \dd_trans('Debug Digger'),
-            \dd_trans('Debug Digger'),
+            dd_trans('Debug Digger'),
+            dd_trans('Debug Digger'),
             $permission,
             DD_TEXT_DOMAIN,
             array( $this, 'render' ),
@@ -40,9 +40,21 @@ class AdminMenuService
         );
     }
 
+    protected function enqueueAssets()
+    {
+        wp_enqueue_script('debug-digger-app', DD_PLUGIN_URL.'assets/main.js', array(), DD_VERSION, true);
+        wp_localize_script('debug-digger-app', 'debugDiggerAdmin', array(
+            'slug'      => 'debug-digger',
+            'nonce'     => wp_create_nonce('debug-digger'),
+            'rest'      => config('rest_api'),
+            'asset_url' => DD_PLUGIN_URL . 'assets/',
+        ));
+    }
+
     public function render()
     {
-        echo '<div id="debug-digger-app">Hellow</div>';
+        $this->enqueueAssets();
+        echo '<div id="debug-digger-app"></div>';
     }
 
     private function getMenuIcon()
