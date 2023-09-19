@@ -2,6 +2,8 @@ import {createApp} from 'vue';
 import {createRouter, createWebHashHistory} from 'vue-router';
 import {routes} from './routes';
 
+require('./app.css')
+
 import App from './App.vue'; // Import the main app component
 
 const app = createApp(App); // Create the app instance

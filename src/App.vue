@@ -28,12 +28,12 @@ export default {
                         title: 'Dashboard'
                     },
                     {
-                        route: 'settings',
-                        title: 'Settings'
-                    },
-                    {
                         route: 'logs',
                         title: 'Logs'
+                    },
+                    {
+                        route: 'settings',
+                        title: 'Settings'
                     },
                 ]
             });

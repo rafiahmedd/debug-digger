@@ -1,0 +1,58 @@
+/* Application Menu CSS */
+.debug-digger-app_main-menu-items {
+    background: #73a5ff;
+    padding: 1px;
+}
+
+ul.debug-digger-app_menu {
+    display: flex;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.debug-digger-app_menu_item a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.89rem;
+    font-weight: 400;
+}
+
+/* Application Body CSS */
+.debug-digger_app_body {
+    padding: 20px;
+}
+
+/*Application layout card*/
+.dd_card {
+    background: #fff;
+    padding: 35px;
+    border-radius: 5px;
+    margin-bottom: 18px;
+}
+span.dd_info {
+    background: #132025;
+    color: #80d192;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px;
+    display: block;
+    word-wrap: break-word;
+}
+
+.dd_card_list_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+
+/* Some Common CSS */
+a:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+#wpcontent{
+    padding-left: 0;
+}

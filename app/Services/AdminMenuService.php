@@ -46,9 +46,22 @@ class AdminMenuService
         wp_localize_script('debug-digger-app', 'debugDiggerAdmin', array(
             'slug'      => 'debug-digger',
             'nonce'     => wp_create_nonce('debug-digger'),
-            'rest'      => config('rest_api'),
+            'rest'      => $this->restInfo(),
             'asset_url' => DD_PLUGIN_URL . 'assets/',
         ));
+    }
+
+    private function restInfo()
+    {
+        $restConfig = config('rest_api');
+
+        return array(
+            'base_url'  => esc_url_raw(rest_url()),
+            'url'       => rest_url($restConfig['url']),
+            'nonce'     => wp_create_nonce($restConfig['nonce']),
+            'namespace' => $restConfig['namespace'],
+            'version'   => $restConfig['version'],
+        );
     }
 
     public function render()

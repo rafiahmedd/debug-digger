@@ -3,10 +3,13 @@ const request =  function (method, route, data = {}) {
 
     const headers = {'X-WP-Nonce': window.debugDiggerAdmin.rest.nonce};
 
-    if (['GET', 'PUT', 'PATCH', 'DELETE'].indexOf(method.toUpperCase()) !== -1) {
-        headers['X-HTTP-Method-Override'] = method;
-        method = 'POST';
-    }
+    headers['X-HTTP-Method-Override'] = method;
+    // method = 'POST';
+
+    // if (['GET', 'PUT', 'PATCH', 'DELETE'].indexOf(method.toUpperCase()) !== -1) {
+    //     headers['X-HTTP-Method-Override'] = method;
+    //     method = 'POST';
+    // }
 
     return window.jQuery.ajax({
         url: url,
@@ -16,7 +19,6 @@ const request =  function (method, route, data = {}) {
     });
 }
 // Composable function to access the REST API. This function can be used in any component.
-// Right now, it only has the get and put methods base on the app requirement. You can add more methods as needed.
 export function useRestApi() {
     function get(route, data) {
         return request('GET', route, data)
