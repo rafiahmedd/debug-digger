@@ -1,5 +1,12 @@
 <template>
-    <div>
+    <Loader v-if="loading"/>
+    <div v-else>
+        <div class="dd_card" v-if="!logs.length" style="text-align: center;">
+        <span style="font-size: 16px; font-weight: 600; color: f38637;">
+            No logs found yet!
+        </span>
+    </div>
+    <div v-else>
         <!-- Create a nice table -->
         <div class="dd_log_table_actions">
             <div class="dd_log_actions">
@@ -32,28 +39,36 @@
             </tbody>
         </table>
     </div>
+    </div>
 </template>
 
 <script>
+    import Loader from './parts/Loader.vue';
     import { reactive, toRefs, onMounted } from 'vue';
     import { useRestApi } from '../modules/rest'; 
     
     export default {
         name: 'Logs',
+        components: {
+            Loader
+        },
         setup() {
             const { get, del } = useRestApi();
             const state = reactive({
-                logs: []
+                logs: [],
+                loading: false
             });
 
             const fetchLogs = async () => {
+                state.loading = true;
                 const logs = await get('logs');
                 state.logs = logs.log;
+                state.loading = false;
             }
 
             const clearLog = async () => {
                 const response = await del('logs');
-                response.message
+                response.message;
                 fetchLogs();
             }
 

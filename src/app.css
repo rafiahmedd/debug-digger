@@ -1,6 +1,5 @@
 /* Application Menu CSS */
 .debug-digger-app_main-menu-items {
-    background: #73a5ff;
     padding: 1px;
 }
 
@@ -8,13 +7,25 @@ ul.debug-digger-app_menu {
     display: flex;
     gap: 30px;
     padding: 0 20px;
+    justify-content: center;
 }
 
 .debug-digger-app_menu_item a {
     text-decoration: none;
-    color: #fff;
+    color: #3b3b3b;
     font-size: 0.89rem;
     font-weight: 400;
+}
+
+li.debug-digger-app_menu_item a{
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+a.router-link-active.router-link-exact-active.debug-digger-app_menu_primary {
+    background: #003d5e;
+    color: #cff1ff;
 }
 
 /* Application Body CSS */

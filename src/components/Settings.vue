@@ -1,16 +1,19 @@
 <template>
-    <div class="dd_card">
-        <div class="dd_card_list_content">
-            <div class="dd_card_list_item" v-for="(item, index) in data" :key="index">
-                <div class="dd_card_list_item_label">
-                    <span> {{ item.label  }} </span>
-                    <span class="dd_card_list_item_help_text"> {{ item.help_text }} </span>
-                </div>
-                <div class="dd_card_list_item_value">
-                    <label class="switch">
-                        <input type="checkbox" v-model="item.value" @change="update(index)">
-                        <span class="slider round"></span>
-                    </label>
+    <Loader v-if="loading"/>
+    <div v-else>
+        <div class="dd_card">
+            <div class="dd_card_list_content">
+                <div class="dd_card_list_item" v-for="(item, index) in data" :key="index">
+                    <div class="dd_card_list_item_label">
+                        <span> {{ item.label  }} </span>
+                        <span class="dd_card_list_item_help_text"> {{ item.help_text }} </span>
+                    </div>
+                    <div class="dd_card_list_item_value">
+                        <label class="switch">
+                            <input type="checkbox" v-model="item.value" @change="update(index)">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -20,54 +23,56 @@
 <script>
     import { onMounted, reactive, toRefs } from 'vue';
     import { useRestApi } from '../modules/rest';
+    import Loader from './parts/Loader.vue';
+
     export default {
-        name: 'Settings',
-        setup() {
-            const { get, post } = useRestApi();
-            const state = reactive({
-                data: [],
-                item: {
-                    label: 'Enable Debug Mode',
-                    value: false,
-                }
-            });
-
-            const getData = async () => {
-                try {
-                    const response = await get('settings');
-                    state.data = response.data;
-                } catch (error) {
-                    console.log(error);
-                }
+    name: 'Settings',
+    components: { Loader },
+    setup() {
+        const { get, post } = useRestApi();
+        const state = reactive({
+            data: [],
+            item: {
+                label: 'Enable Debug Mode',
+                value: false,
+            },
+            loading: false
+        });
+        const getData = async () => {
+            try {
+                state.loading = true;
+                const response = await get('settings');
+                state.data = response.data;
+                state.loading = false;
             }
-
-            const update = async (item) => {
-                try {
-                    const response = await post('settings', 
-                    {
-                        'key':item,
-                        'value': state.data[item].value
-                    }
-                    );
-                    state.data = response.data;
-                } catch (error) {
-                    console.log(error);
-                }
+            catch (error) {
+                console.log(error);
             }
-
-            onMounted(() => {
-                getData();
-            });
-
-            return {
-                ...toRefs(state),
-                get,
-                post,
-                getData,
-                update
+        };
+        const update = async (item) => {
+            try {
+                const response = await post('settings', {
+                    'key': item,
+                    'value': state.data[item].value
+                });
+                state.data = response.data;
             }
-        }
-    }
+            catch (error) {
+                console.log(error);
+            }
+        };
+        onMounted(() => {
+            getData();
+        });
+        return {
+            ...toRefs(state),
+            get,
+            post,
+            getData,
+            update
+        };
+    },
+}
 </script>
 
 <style scoped>

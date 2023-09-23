@@ -18,7 +18,7 @@ class LogService
 
         if (empty($this->logData)) {
             return [
-                'log' => dd_trans('No logs found')
+                'log' => []
             ];
         }
 
@@ -32,7 +32,7 @@ class LogService
         }
 
         return [
-            'log' => $this->logs
+            'log' => array_reverse($this->logs)
         ];
     }
 
