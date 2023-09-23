@@ -1,6 +1,16 @@
 <template>
     <div>
         <!-- Create a nice table -->
+        <div class="dd_log_table_actions">
+            <div class="dd_log_actions">
+                <button class="dd_button" @click="fetchLogs">
+                    <span class="dashicons dashicons-image-rotate"></span>
+                </button>
+                <button class="dd_button" @click="clearLog">
+                    <span class="dashicons dashicons-trash"></span>
+                </button>
+            </div>
+        </div>
         <table class="dd_log_table">
             <thead>
                 <tr>
@@ -31,7 +41,7 @@
     export default {
         name: 'Logs',
         setup() {
-            const { get } = useRestApi();
+            const { get, del } = useRestApi();
             const state = reactive({
                 logs: []
             });
@@ -41,6 +51,12 @@
                 state.logs = logs.log;
             }
 
+            const clearLog = async () => {
+                const response = await del('logs');
+                response.message
+                fetchLogs();
+            }
+
             onMounted(() => {
                 fetchLogs();
             });
@@ -48,7 +64,9 @@
             return { 
                 ...toRefs(state),
                 get,
-                fetchLogs
+                del,
+                fetchLogs,
+                clearLog
              };
         }
     }
@@ -87,5 +105,38 @@
     background: #ff8c00;
     font-weight: bold;
     color: #fff;
+}
+
+.dd_log_table_actions {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 12px;
+}
+
+.dd_log_actions {
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.dd_log_actions button.dd_button {
+    margin: 5px;
+    background: transparent;
+    border: none;
+}
+
+.dashicons-image-rotate:before {
+    color: #697a8d;
+}
+.dashicons-image-rotate:hover:before {
+    color: #73a5ff;
+    cursor: pointer;
+}
+.dashicons-trash:before{
+    color: #ee7b7b;
+}
+.dashicons-trash:hover:before {
+    color: #eb5757;
+    cursor: pointer;
 }
 </style>

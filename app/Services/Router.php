@@ -107,4 +107,10 @@ class Router
         $this->route(\WP_REST_Server::EDITABLE, $endpoint, $callback, $permissions);
         return $this;
     }
+
+    public function del( $endpoint, $callback, $permissions = array() )
+    {
+        $this->route(\WP_REST_Server::DELETABLE, $endpoint, $callback, $permissions);
+        return $this;
+    }
 }

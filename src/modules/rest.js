@@ -32,8 +32,12 @@ export function useRestApi() {
         return request('PUT', route, data);
     }
 
+    function del(route, data) {
+        return request('DELETE', route, data);
+    }
+
     return {
-        get, post, put
+        get, post, put, del
     }
 }
 

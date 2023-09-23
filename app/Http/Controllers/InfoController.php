@@ -8,6 +8,7 @@ class InfoController
         return [
             'data' => [
                 'php_version' => phpversion(),
+                'wp_version' => get_bloginfo('version'),
                 'php_extensions' => get_loaded_extensions(),
                 'php_configuration' => ini_get_all(),
                 'server' => $_SERVER,

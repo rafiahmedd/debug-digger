@@ -3,6 +3,9 @@
         <span class="dd_info">
             PHP Version => {{ data.php_version }}
         </span>
+        <span class="dd_info">
+            WordPress Version => {{ data.wp_version }}
+        </span>
     </div>
     <div class="dd_card">
         <span class="dd_info" v-for="(value, label) in data.server">

@@ -9,3 +9,4 @@ $router->get('settings', [new SettingController(), 'getSettings']);
 $router->put('settings', [new SettingController(), 'updateSettings']);
 
 $router->get('logs', [new DebugDigger\App\Http\Controllers\LogController(), 'getLog']);
+$router->del('logs', [new DebugDigger\App\Http\Controllers\LogController(), 'clearLog']);
