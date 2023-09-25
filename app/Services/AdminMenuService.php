@@ -32,6 +32,15 @@ class AdminMenuService
 
         add_submenu_page(
             DD_TEXT_DOMAIN,
+            dd_trans('Cron Info'),
+            dd_trans('Cron Info'),
+            $permission,
+            DD_TEXT_DOMAIN.'#/cron-info',
+            array( $this, 'render' )
+        );
+
+        add_submenu_page(
+            DD_TEXT_DOMAIN,
             dd_trans('Settings'),
             dd_trans('Settings'),
             $permission,
