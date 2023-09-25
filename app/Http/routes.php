@@ -10,3 +10,5 @@ $router->put('settings', [new SettingController(), 'updateSettings']);
 
 $router->get('logs', [new DebugDigger\App\Http\Controllers\LogController(), 'getLog']);
 $router->del('logs', [new DebugDigger\App\Http\Controllers\LogController(), 'clearLog']);
+
+$router->get('cron-info', [new DebugDigger\App\Http\Controllers\CronInfoController(), 'getCronInfo']);

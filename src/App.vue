@@ -32,6 +32,10 @@ export default {
                         title: 'Logs'
                     },
                     {
+                        route: 'cron-info',
+                        title: 'Cron Info'
+                    },
+                    {
                         route: 'settings',
                         title: 'Settings'
                     },

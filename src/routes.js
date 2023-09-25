@@ -1,6 +1,7 @@
 import Dashboard from "./components/Dashboard.vue";
 import Settings from "./components/Settings.vue";
 import Logs from "./components/Logs.vue";
+import CronInfo from "./components/CronInfo.vue";
 
 export var routes = [
     {
@@ -25,6 +26,14 @@ export var routes = [
         component: Logs,
         meta: {
             active: 'logs'
+        }
+    },
+    {
+        path: '/cron-info',
+        name: 'cron-info',
+        component: CronInfo,
+        meta: {
+            active: 'cron-info'
         }
     }
 ];
