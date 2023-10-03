@@ -60,8 +60,8 @@ class CronInfoService
     {
         $currentTime = date("Y-m-d H:i:s", time());
         $timeDiff = strtotime($nextRun) - strtotime($currentTime);
-        $hours = floor($timeDiff / 3600);
-        $minutes = floor(($timeDiff / 60) % 60);
+        $hours = intval($timeDiff/3600);
+        $minutes = intval(($timeDiff / 60)) % 60;
         $seconds = $timeDiff % 60;
         
          return esc_html($hours . ' hours ' . $minutes . ' minutes ' . $seconds . ' seconds');

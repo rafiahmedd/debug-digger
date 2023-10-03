@@ -97,6 +97,24 @@ span.dd_info {
     color: #fff;
 }
 
+.dd_log_type_Notice{
+    background: #5e5e5e;
+    font-weight: bold;
+    color: #fff;
+}
+
+.dd_log_type_Parse{
+    background: #ff7c7c;
+    font-weight: bold;
+    color: #fff;
+}
+
+.dd_log_type_Fatal{
+    background: #ff0000;
+    font-weight: bold;
+    color: #fff;
+}
+
 .dd_log_table_actions {
     display: flex;
     flex-direction: row-reverse;

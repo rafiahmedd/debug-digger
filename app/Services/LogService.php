@@ -5,12 +5,10 @@ class LogService
 {
     private array $logs;
     private $logData;
-    private $logFilePath = ABSPATH . 'wp-content/debug.log';
 
     public function __construct()
     {
-        $this->logFile = ABSPATH . 'wp-content/debug.log';
-        $this->logData = file_get_contents($this->logFilePath);
+        $this->logData = file_get_contents(ABSPATH . 'wp-content/debug.log');
     }
     public function getLog()
     {
